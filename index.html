@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miles Away Blog — Travel Stories, Gear & Honest Adventures</title>
+  <!-- SEO: Primary Meta -->
+  <meta name="description" content="Miles Away is a travel blog by Melvin — a Las Vegas photographer and designer. Destination guides, gear reviews, travel hacks, and real stories from the road. Worldwide travel, honest perspective.">
+  <meta name="keywords" content="travel blog, travel stories, destination guides, travel photography, travel gear, budget travel, Las Vegas travel, miles away blog">
+  <meta name="author" content="Melvin">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://milesawayblog.com/">
+
+  <!-- SEO: Open Graph (Facebook, LinkedIn, iMessage, WhatsApp) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Miles Away Blog — Travel Stories from Around the World">
+  <meta property="og:description" content="Destination guides, gear reviews, travel hacks, and real stories from the road. Based in Las Vegas, traveling everywhere.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1200&h=630&fit=crop&q=80">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://milesawayblog.com/">
+  <meta property="og:site_name" content="Miles Away Blog">
+  <meta property="og:locale" content="en_US">
+
+  <!-- SEO: Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Miles Away Blog — Travel Stories from Around the World">
+  <meta name="twitter:description" content="Destination guides, gear reviews, travel hacks, and real stories from the road. Based in Las Vegas, traveling everywhere.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1200&h=630&fit=crop&q=80">
+  <meta name="twitter:site" content="@milesawayblog">
+  <meta name="twitter:creator" content="@milesawayblog">
+
+  <!-- SEO: Geographic & Language -->
+  <meta name="geo.region" content="US-NV">
+  <meta name="geo.placename" content="Las Vegas, Nevada">
+  <meta name="language" content="English">
+  <meta http-equiv="content-language" content="en-us">
+
+  <!-- SEO: Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="theme-color" content="#E8421A">
+  <meta name="msapplication-TileColor" content="#E8421A">
+
+  <!-- SEO: Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Miles Away Blog — Travel Stories, Gear & Honest Adventures",
+    "description": "Miles Away is a travel blog by Melvin — a Las Vegas photographer and designer. Destination guides, gear reviews, travel hacks, and real stories from the road. Worldwide travel, honest perspective.",
+    "url": "https://milesawayblog.com/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Miles Away Blog",
+      "url": "https://milesawayblog.com"
+    }
+  }
+  </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0D0D0D;
+    --white: #F7F4EF;
+    --accent: #E8421A;
+    --border: 2.5px solid #0D0D0D;
+    --border-thin: 1.5px solid #0D0D0D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    background: #F7F4EF;
+    color: #0D0D0D;
+    color-scheme: light;
+  }
+
+  body {
+    background: #F7F4EF;
+    color: #0D0D0D;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  nav {
+    border-bottom: var(--border);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0;
+    height: 68px;
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; padding-left: 40px; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--black);
+    border-left: var(--border);
+    border-right: var(--border);
+    padding: 0 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+  .logo span { color: var(--accent); }
+
+  .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 12px; padding-right: 40px; }
+
+  .nav-btn {
+    border: var(--border-thin);
+    padding: 6px 14px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    background: transparent;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  .nav-btn:hover { background: var(--black); color: var(--white); }
+  .nav-btn.filled { background: var(--accent); color: var(--white); border-color: var(--accent); }
+  .nav-btn.filled:hover { background: var(--black); border-color: var(--black); }
+
+  .ticker {
+    width: 100%;
+    border-bottom: var(--border);
+    background: var(--black);
+    color: var(--white);
+    padding: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex;
+    gap: 48px;
+    animation: ticker 28s linear infinite;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .ticker-inner span { color: var(--accent); margin-right: 8px; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    border-bottom: var(--border);
+    min-height: 500px;
+  }
+
+  .hero-main {
+    border-right: var(--border);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .hero-main img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .hero-main:hover img { transform: scale(1.03); }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,13,13,0.85) 0%, transparent 55%);
+  }
+
+  .hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 32px;
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1.0;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .hero-meta { font-size: 12px; color: rgba(247,244,239,0.7); font-weight: 500; letter-spacing: 0.04em; }
+
+  .hero-sidebar { display: flex; flex-direction: column; }
+
+  .sidebar-post {
+    flex: 1;
+    border-bottom: var(--border);
+    padding: 28px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .sidebar-post:last-child { border-bottom: none; }
+  .sidebar-post:hover { background: var(--black); }
+  .sidebar-post:hover .sidebar-tag { background: var(--accent); }
+  .sidebar-post:hover .sidebar-title { color: var(--white); }
+  .sidebar-post:hover .sidebar-meta { color: rgba(247,244,239,0.5); }
+
+  .sidebar-tag {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    margin-bottom: 10px;
+  }
+
+  .sidebar-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.25;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+
+  .sidebar-meta { font-size: 11px; color: #666; font-weight: 500; }
+
+  .categories-bar { display: flex; border-bottom: var(--border); overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .categories-bar::-webkit-scrollbar { display: none; }
+
+  .cat-item {
+    flex: 1;
+    border-right: var(--border);
+    padding: 22px 16px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--black);
+    transition: background 0.15s;
+    min-width: 100px;
+    max-width: 160px;
+  }
+  .cat-item:last-child { border-right: none; }
+  .cat-item:hover { background: var(--black); color: var(--white); }
+  .cat-item.active { background: var(--accent); color: var(--white); }
+
+  .cat-icon { font-size: 22px; margin-bottom: 7px; display: block; }
+  .cat-label { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; white-space: normal; line-height: 1.3; word-break: break-word; }
+
+  .section-label { display: flex; align-items: center; border-bottom: var(--border); border-top: var(--border); }
+
+  .section-label h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 16px 28px;
+    border-right: var(--border);
+  }
+
+  .section-label .view-all {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    padding: 16px 28px;
+    border-left: var(--border);
+    margin-left: auto;
+  }
+  .section-label .view-all:hover { background: var(--black); color: var(--white); }
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: var(--border);
+  }
+
+  .post-card { border-right: var(--border); cursor: pointer; transition: background 0.15s; }
+  .post-card:last-child { border-right: none; }
+  .post-card:hover { background: #F0EDE6; }
+
+  .post-card-img { width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block; border-bottom: var(--border); }
+
+  .post-card-body { padding: 24px; }
+
+  .post-card-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .post-card-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px; line-height: 1.25; margin-bottom: 12px; }
+  .post-card-excerpt { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 18px; }
+
+  .post-card-meta {
+    font-size: 11px;
+    color: #888;
+    font-weight: 500;
+    border-top: var(--border-thin);
+    padding-top: 14px;
+    margin-top: 4px;
+  }
+
+  .featured-strip {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    border-bottom: var(--border);
+  }
+
+  .featured-big { border-right: var(--border); position: relative; overflow: hidden; min-height: 380px; cursor: pointer; }
+  .featured-big img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .featured-big:hover img { transform: scale(1.04); }
+
+  .featured-big-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,13,13,0.88) 0%, transparent 50%);
+  }
+
+  .featured-big-content { position: absolute; bottom: 0; padding: 28px; }
+
+  .featured-big-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 1.05;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-top: 10px;
+  }
+
+  .featured-stack { display: flex; flex-direction: column; border-right: var(--border); }
+  .featured-stack:last-child { border-right: none; }
+
+  .featured-stack-item { flex: 1; padding: 28px 24px; border-bottom: var(--border); cursor: pointer; transition: background 0.15s; }
+  .featured-stack-item:last-child { border-bottom: none; }
+  .featured-stack-item:hover { background: var(--black); }
+  .featured-stack-item:hover .stack-title { color: var(--white); }
+  .featured-stack-item:hover .stack-meta { color: rgba(247,244,239,0.5); }
+  .featured-stack-item:hover .stack-tag { background: var(--accent); color: var(--white); border-color: var(--accent); }
+
+  .stack-tag {
+    display: inline-block;
+    border: var(--border-thin);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    margin-bottom: 10px;
+  }
+
+  .stack-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 8px; }
+  .stack-meta { font-size: 11px; color: #777; font-weight: 500; }
+
+  .newsletter { border-bottom: var(--border); display: grid; grid-template-columns: 1fr 1fr; }
+
+  .newsletter-left { background: var(--black); color: var(--white); padding: 56px 52px; border-right: var(--border); }
+
+  .newsletter-left h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 38px;
+    line-height: 1.0;
+    margin-bottom: 16px;
+  }
+  .newsletter-left h3 em { color: var(--accent); font-style: italic; }
+  .newsletter-left p { font-size: 14px; color: rgba(247,244,239,0.65); max-width: 320px; }
+
+  .newsletter-right { padding: 56px 52px; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+
+  .newsletter-right input {
+    border: var(--border);
+    padding: 13px 18px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    background: transparent;
+    outline: none;
+  }
+  .newsletter-right input:focus { background: rgba(13,13,13,0.04); }
+
+  .newsletter-right button {
+    border: var(--border);
+    background: var(--accent);
+    color: var(--white);
+    padding: 13px 24px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .newsletter-right button:hover { background: var(--black); }
+
+  footer { border-top: var(--border); border-bottom: var(--border); }
+  .footer-inner { display: flex; }
+  .footer-col { flex: 1; padding: 28px 24px; border-right: var(--border); }
+  .footer-col:last-child { border-right: none; }
+  .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; padding-bottom: 10px; border-bottom: var(--border-thin); }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 8px; }
+  .footer-col ul li a { font-size: 13px; color: #555; text-decoration: none; font-weight: 500; }
+  .footer-col ul li a:hover { color: var(--accent); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 14px 28px; font-size: 11px; color: #888; font-weight: 500; }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background: var(--black);
+    transition: all 0.25s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--white);
+    border-bottom: var(--border);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    padding: 16px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--black);
+    border-bottom: var(--border-thin);
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { background: var(--accent); color: var(--white); }
+
+  /* ── TABLET (max 900px) ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-main { min-height: 400px; border-right: none; border-bottom: var(--border); }
+    .hero-sidebar { flex-direction: column; }
+    .sidebar-post { border-right: none; border-bottom: var(--border); }
+    .sidebar-post:last-child { border-bottom: none; }
+
+    .post-grid { grid-template-columns: repeat(2, 1fr); }
+    .post-card:nth-child(even) { border-right: none; }
+    .post-card:nth-child(n+3) { border-top: var(--border); }
+
+    .featured-strip { grid-template-columns: 1fr; }
+    .featured-big { min-height: 320px; border-right: none; border-bottom: var(--border); }
+    .featured-stack { border-right: none; border-bottom: var(--border); flex-direction: column; }
+    .featured-stack:last-child { border-bottom: none; }
+    .featured-stack-item { border-right: none; }
+
+    .newsletter { grid-template-columns: 1fr; }
+    .newsletter-left { border-right: none; border-bottom: var(--border); padding: 36px; }
+    .newsletter-right { padding: 36px; }
+
+    .footer-inner { flex-wrap: wrap; }
+    .footer-col { flex: 1 1 45%; }
+    .footer-col:nth-child(even) { border-right: none; }
+    .footer-col:nth-child(n+3) { border-top: var(--border); }
+    .footer-bottom { flex-direction: column; gap: 4px; text-align: center; padding: 14px 16px; }
+
+    .section-label h2 { font-size: 11px; padding: 10px 16px; }
+    .section-label .view-all { padding: 10px 14px; font-size: 10px; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html, body { background: #F7F4EF !important; color: #0D0D0D !important; }
+  }
+  .inline-ad { border: var(--border); display: flex; align-items: center; gap: 20px; padding: 18px 22px; margin: 0; background: var(--white); }
+  .inline-ad .ad-label { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; border: 1px solid #ddd; padding: 3px 8px; flex-shrink: 0; }
+  .inline-ad .ad-body { flex: 1; }
+  .inline-ad .ad-body strong { font-family: 'Fraunces', serif; font-size: 16px; display: block; margin-bottom: 4px; }
+  .inline-ad .ad-body p { font-size: 13px; color: #555; line-height: 1.5; margin: 0; }
+  .inline-ad .ad-cta { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); background: var(--accent); padding: 10px 18px; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+  .inline-ad .ad-cta:hover { background: var(--black); }
+  @media (max-width: 640px) { .inline-ad { flex-wrap: wrap; gap: 12px; } }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NLF96VDZ1B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NLF96VDZ1B');
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="#" class="logo">Miles<span>Away</span></a>
+  <ul class="nav-links">
+    <li><a href="archive.html">All Stories</a></li>
+    <li><a href="archive.html">Gear & Reviews</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-btn">Search</button>
+    <a href="archive.html#subscribe" class="nav-btn filled" style="text-decoration:none">Subscribe</a>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="archive.html">All Stories</a>
+  <a href="archive.html">Gear & Reviews</a>
+  <a href="archive.html">Travel Tips</a>
+  <a href="about.html">About</a>
+  <a href="#" style="background:var(--accent);color:var(--white);">Subscribe</a>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>✦</span> New: The Beauty of Vancouver, Canada &nbsp;&nbsp;
+    <span>✦</span> The Sphere in Las Vegas &nbsp;&nbsp;
+    <span>✦</span> Essential Travel Tech & Photography Gear &nbsp;&nbsp;
+    <span>✦</span> Budget Travel: Timeshares Without Buying One &nbsp;&nbsp;
+    <span>✦</span> Capital One Venture X — Is It Worth It? &nbsp;&nbsp;
+    <span>✦</span> New: The Beauty of Vancouver, Canada &nbsp;&nbsp;
+    <span>✦</span> The Sphere in Las Vegas &nbsp;&nbsp;
+    <span>✦</span> Essential Travel Tech & Photography Gear &nbsp;&nbsp;
+    <span>✦</span> Budget Travel: Timeshares Without Buying One &nbsp;&nbsp;
+    <span>✦</span> Capital One Venture X — Is It Worth It?
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-main" onclick="location.href='posts/vancouver.html'" style="cursor:pointer">
+    <img src="https://images.unsplash.com/photo-1559511260-66a654ae982a?w=1200&q=80" alt="Vancouver Canada">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="tag">Destinations</div>
+      <div class="hero-title">The Beauty of<br>Vancouver, Canada</div>
+      <div class="hero-meta">By Melvin &nbsp;·&nbsp; January 8, 2024 &nbsp;·&nbsp; North America</div>
+    </div>
+  </div>
+  <div class="hero-sidebar">
+    <div class="sidebar-post">
+      <div>
+        <div class="sidebar-tag">Las Vegas</div>
+        <a href="posts/the-sphere.html" style="text-decoration:none;color:inherit"><div class="sidebar-title">The Sphere: A Futuristic Marvel You Have to Experience</div></a>
+      </div>
+      <div class="sidebar-meta">Experiences &nbsp;·&nbsp; 2024</div>
+    </div>
+    <div class="sidebar-post">
+      <div>
+        <div class="sidebar-tag">Travel Tips</div>
+        <a href="posts/timeshares.html" style="text-decoration:none;color:inherit"><div class="sidebar-title">Vacationing with Timeshares Without Buying One</div></a>
+      </div>
+      <div class="sidebar-meta">Budget Travel &nbsp;·&nbsp; May 4, 2024</div>
+    </div>
+    <div class="sidebar-post">
+      <div>
+        <div class="sidebar-tag">Personal</div>
+        <a href="posts/adventure-begins.html" style="text-decoration:none;color:inherit"><div class="sidebar-title">The Adventure Begins: Why I Travel</div></a>
+      </div>
+      <div class="sidebar-meta">Our Story &nbsp;·&nbsp; January 4, 2024</div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="categories-bar">
+  <a href="#" class="cat-item active"><span class="cat-icon">✈️</span><span class="cat-label">All</span></a>
+  <a href="#" class="cat-item"><span class="cat-icon">🌍</span><span class="cat-label">Destinations</span></a>
+  <a href="#" class="cat-item"><span class="cat-icon">🎒</span><span class="cat-label">Gear</span></a>
+  <a href="#" class="cat-item"><span class="cat-icon">💳</span><span class="cat-label">Reviews</span></a>
+  <a href="#" class="cat-item"><span class="cat-icon">💡</span><span class="cat-label">Travel Tips</span></a>
+  <a href="#" class="cat-item"><span class="cat-icon">🧴</span><span class="cat-label">Personal Care</span></a>
+  <a href="#" class="cat-item"><span class="cat-icon">📷</span><span class="cat-label">Photography</span></a>
+</div>
+
+<!-- ALL POSTS -->
+<div class="section-label">
+  <h2>All Stories</h2>
+  <a href="destinations.html" class="view-all">View All →</a>
+</div>
+
+<div class="post-grid">
+  <div class="post-card" onclick="location.href='posts/vancouver.html'" style="cursor:pointer">
+    <img class="post-card-img" src="https://images.unsplash.com/photo-1559511260-66a654ae982a?w=600&q=80" alt="Vancouver">
+    <div class="post-card-body">
+      <div class="post-card-tag">Destinations</div>
+      <a href="posts/vancouver.html" style="text-decoration:none;color:inherit"><div class="post-card-title">The Beauty of Vancouver, Canada</div></a>
+      <div class="post-card-excerpt">One of North America's most naturally stunning cities. Here's why Vancouver is worth every mile.</div>
+      <div class="post-card-meta">Jan 8, 2024 &nbsp;·&nbsp; North America</div>
+    </div>
+  </div>
+  <div class="post-card" onclick="location.href='posts/the-sphere.html'" style="cursor:pointer">
+    <img class="post-card-img" src="https://images.unsplash.com/photo-1581351721010-8cf859cb14a4?w=600&q=80" alt="Las Vegas Sphere">
+    <div class="post-card-body">
+      <div class="post-card-tag">Experiences</div>
+      <a href="posts/the-sphere.html" style="text-decoration:none;color:inherit"><div class="post-card-title">The Sphere: Las Vegas Just Changed the Game</div></a>
+      <div class="post-card-excerpt">This futuristic marvel left me speechless. Here's what to expect inside the most talked-about venue in Vegas.</div>
+      <div class="post-card-meta">2024 &nbsp;·&nbsp; Las Vegas</div>
+    </div>
+  </div>
+  <div class="post-card" onclick="location.href='posts/travel-gear.html'" style="cursor:pointer">
+    <img class="post-card-img" src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&q=80" alt="Camera gear">
+    <div class="post-card-body">
+      <div class="post-card-tag">Gear</div>
+      <a href="posts/travel-gear.html" style="text-decoration:none;color:inherit"><div class="post-card-title">Essential Travel Tech & Photography Gear</div></a>
+      <div class="post-card-excerpt">Ready to level up your travel photography? These are the tools I actually use and trust on every trip.</div>
+      <div class="post-card-meta">Apr 25, 2024 &nbsp;·&nbsp; Travel Accessories</div>
+    </div>
+  </div>
+  <div class="post-card" onclick="location.href='posts/timeshares.html'" style="cursor:pointer">
+    <img class="post-card-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Budget travel mountains">
+    <div class="post-card-body">
+      <div class="post-card-tag">Travel Tips</div>
+      <a href="posts/timeshares.html" style="text-decoration:none;color:inherit"><div class="post-card-title">Budget Travel: Timeshares Without Buying One</div></a>
+      <div class="post-card-excerpt">The hacks to using timeshare programs for budget travel — without ever owning one.</div>
+      <div class="post-card-meta">May 4, 2024 &nbsp;·&nbsp; Budget Travel</div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="section-label">
+  <h2>Reviews & Gear</h2>
+  <a href="gear.html" class="view-all">View All →</a>
+</div>
+
+<div class="featured-strip">
+  <div class="featured-big" onclick="location.href='posts/venture-x.html'" style="cursor:pointer">
+    <img src="https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=900&q=80" alt="Capital One Venture X">
+    <div class="featured-big-overlay"></div>
+    <div class="featured-big-content">
+      <div class="tag">Credit Cards</div>
+      <div class="featured-big-title">Why the Capital One Venture X Is the Card Every Traveler Needs</div>
+    </div>
+  </div>
+  <div class="featured-stack">
+    <div class="featured-stack-item">
+      <div class="stack-tag">Credit Cards</div>
+      <a href="posts/venture-card.html" style="text-decoration:none;color:inherit"><div class="stack-title">The Must Have Venture Credit Card from Capital One</div></a>
+      <div class="stack-meta">Reviews &nbsp;·&nbsp; Jan 6, 2024</div>
+    </div>
+    <div class="featured-stack-item">
+      <div class="stack-tag">Shopping</div>
+      <a href="posts/temu.html" style="text-decoration:none;color:inherit"><div class="stack-title">Temu: Your Gateway to Seamless Shopping</div></a>
+      <div class="stack-meta">Reviews &nbsp;·&nbsp; Jan 16, 2024</div>
+    </div>
+    <div class="featured-stack-item">
+      <div class="stack-tag">Personal Care</div>
+      <a href="posts/paul-mitchell.html" style="text-decoration:none;color:inherit"><div class="stack-title">Paul Mitchell Tea Tree: My Daily Hair Game-Changer</div></a>
+      <div class="stack-meta">Personal Care &nbsp;·&nbsp; 2024</div>
+    </div>
+  </div>
+  <div class="featured-stack">
+    <div class="featured-stack-item">
+      <div class="stack-tag">Gear</div>
+      <a href="posts/travel-gear.html" style="text-decoration:none;color:inherit"><div class="stack-title">The Coofay Travel Backpack Built for Long Flights</div></a>
+      <div class="stack-meta">Travel Accessories &nbsp;·&nbsp; 2024</div>
+    </div>
+    <div class="featured-stack-item">
+      <div class="stack-tag">Personal</div>
+      <a href="posts/adventure-begins.html" style="text-decoration:none;color:inherit"><div class="stack-title">The Adventure Begins: Why I Travel</div></a>
+      <div class="stack-meta">My Story &nbsp;·&nbsp; Jan 4, 2024</div>
+    </div>
+    <div class="featured-stack-item">
+      <div class="stack-tag">Photography</div>
+      <a href="posts/adventure-begins.html" style="text-decoration:none;color:inherit"><div class="stack-title">Finding Balance on and Off the Road</div></a>
+      <div class="stack-meta">Life &nbsp;·&nbsp; 2024</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <div class="newsletter-left">
+    <h3>Go <em>further.</em><br>Travel <em>smarter.</em></h3>
+    <p>Stories, gear guides, destination tips, and honest reviews — from someone who actually goes.</p>
+  </div>
+  <div class="newsletter-right">
+    <input type="text" placeholder="Your name">
+    <input type="email" placeholder="Your email address">
+    <button>Subscribe — It's Free</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Miles Away</h4>
+      <ul>
+        <li><a href="about.html">About Melvin</a></li>
+        <li><a href="#">Work With Me</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <ul>
+        <li><a href="destinations.html">All Destinations</a></li>
+        <li><a href="#">Las Vegas</a></li>
+        <li><a href="#">Canada</a></li>
+        <li><a href="#">More Coming</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Topics</h4>
+      <ul>
+        <li><a href="tips.html">Travel Tips</a></li>
+        <li><a href="gear.html">Gear &amp; Reviews</a></li>
+        <li><a href="#">Photography</a></li>
+        <li><a href="#">Budget Travel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+        <li><a href="#">Pinterest</a></li>
+        <li><a href="#">Newsletter</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>&copy; 2024 Miles Away Blog. All rights reserved.</span>
+  <span>Built with curiosity &amp; a carry-on. &mdash; Melvin</span>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+</body>
+</html>
