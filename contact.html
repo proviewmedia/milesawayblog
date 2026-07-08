@@ -162,6 +162,19 @@
   @media (prefers-color-scheme: dark) {
     html, body { background: #F7F4EF !important; color: #0D0D0D !important; }
   }
+
+  /* ── UNIFIED HEADER v2 (logo left, links centered) ── */
+  nav{grid-template-columns:auto 1fr auto !important;height:64px !important;padding:0 !important;z-index:200 !important;}
+  .nav-links{display:flex !important;justify-content:center !important;padding-left:0 !important;gap:28px !important;}
+  .logo{border-left:none !important;border-right:var(--border) !important;padding:0 26px !important;}
+  .nav-right{display:flex !important;padding-right:26px !important;}
+  @media(max-width:768px){
+    nav{grid-template-columns:44px 1fr 0 !important;padding:0 16px !important;height:56px !important;}
+    .nav-links{display:none !important;}
+    .nav-right{display:none !important;}
+    .hamburger{display:flex !important;}
+    .logo{border:none !important;padding:0 !important;justify-content:center !important;}
+  }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLF96VDZ1B"></script>
@@ -185,9 +198,7 @@
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html" class="active">Contact</a></li>
   </ul>
-  <div class="nav-right">
-    <button class="nav-btn filled">Subscribe</button>
-  </div>
+  <div class="nav-right"><button class="nav-btn filled">Subscribe</button></div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html">Home</a>
