@@ -206,6 +206,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  try{if(localStorage.getItem('ma-cookie-consent')==='declined'){window['ga-disable-G-NLF96VDZ1B']=true;}}catch(e){}
   gtag('js', new Date());
   gtag('config', 'G-NLF96VDZ1B');
 </script>
@@ -317,5 +318,6 @@
   h.addEventListener('click',()=>{h.classList.toggle('open');m.classList.toggle('open');});
 </script>
 <script src="../ads.js"></script>
+<script src="cookie-consent.js"></script>
 </body>
 </html>
