@@ -279,6 +279,16 @@
     .hamburger{display:flex !important;justify-self:start !important;}
     .logo{border:none !important;padding:0 !important;justify-self:center !important;justify-content:center !important;}
   }
+  /* == UNIFIED FOOTER (always one row of 4) == */
+  footer{overflow:hidden !important;}
+  .footer-inner{display:grid !important;grid-template-columns:repeat(4,minmax(0,1fr)) !important;width:100% !important;}
+  .footer-col{border-right:var(--border) !important;border-top:none !important;min-width:0 !important;}
+  .footer-col:last-child{border-right:none !important;}
+  @media(max-width:640px){
+    .footer-col{padding:15px 9px !important;}
+    .footer-col h4{font-size:9px !important;letter-spacing:0.04em !important;}
+    .footer-col ul li a{font-size:11px !important;}
+  }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLF96VDZ1B"></script>
