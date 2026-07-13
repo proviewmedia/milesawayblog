@@ -84,13 +84,26 @@
         '<a class="mp-unit-cta" href="' + p.url + '" target="_blank" rel="sponsored noopener">' + (p.cta || 'Learn More') + ' →</a></div>';
   }
 
+  // advertiser/brand for a key — all Vegas.com creatives count as one brand
+  function brandOf(key) { return (key.indexOf('vegas') === 0 || key === 'grand-canyon') ? 'vegas' : key; }
+
   function fill() {
     var slots = document.querySelectorAll('.partner-slot');
-    var r = 0;
+    var used = {}, r = 0;
+    function pickUnused() {
+      for (var t = 0; t < ROTATE.length; t++) {
+        var k = ROTATE[(r + t) % ROTATE.length];
+        if (!used[brandOf(k)]) { r = r + t + 1; return k; }
+      }
+      return null;
+    }
     for (var i = 0; i < slots.length; i++) {
       var key = slots[i].getAttribute('data-partner');
-      var p = key && P[key] ? P[key] : P[ROTATE[(r++) % ROTATE.length]];
-      if (!p) continue;
+      // if unset, unknown, or its advertiser already appeared on this page, pick an unused one
+      if (!key || !P[key] || used[brandOf(key)]) key = pickUnused();
+      if (!key) continue;
+      used[brandOf(key)] = 1;
+      var p = P[key];
       slots[i].innerHTML = p.img ? bannerHTML(p) : textHTML(p);
     }
   }
