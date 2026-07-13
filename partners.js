@@ -47,6 +47,7 @@
     '.mp-rec{display:flex;align-items:center;gap:26px;margin:38px 0;border-top:2.5px solid #0D0D0D;border-bottom:2.5px solid #0D0D0D;padding:22px 4px;}' +
     '.mp-rec.mp-rec--right{flex-direction:row-reverse;}' +
     '.mp-rec-pitch{flex:1 1 46%;min-width:0;font-family:"Fraunces",serif;font-weight:700;font-size:20px;line-height:1.32;color:#0D0D0D;}' +
+    '.mp-rec-pitch a{color:inherit;text-decoration:none;font-weight:inherit;}.mp-rec-pitch a:hover{color:#E8421A;}' +
     '.mp-rec-media{flex-shrink:0;max-width:56%;}' +
     '.mp-rec-media a{display:inline-block;width:100%;line-height:0;border:0;text-decoration:none;}' +
     '.mp-rec-media img{width:100%;height:auto;display:block;border:0;}' +
@@ -54,6 +55,7 @@
     // sidebar skyscraper
     '.mp-sky{margin:0 0 8px;text-align:center;}' +
     '.mp-sky-pitch{font-family:"Fraunces",serif;font-weight:700;font-size:15px;line-height:1.3;color:#0D0D0D;margin-bottom:12px;text-align:left;}' +
+    '.mp-sky-pitch a{color:inherit;text-decoration:none;font-weight:inherit;}.mp-sky-pitch a:hover{color:#E8421A;}' +
     '.mp-sky a{display:inline-block;width:100%;max-width:300px;line-height:0;border:0;}' +
     '.mp-sky img{width:100%;height:auto;display:block;border:0;}' +
     // text fallback box
@@ -61,6 +63,7 @@
     '.mp-unit-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;border:1px solid #ccc;padding:3px 8px;flex-shrink:0;align-self:flex-start;}' +
     '.mp-unit-body{flex:1;min-width:0;}.mp-unit-chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#E8421A;margin-bottom:5px;}' +
     '.mp-unit-body strong{font-family:"Fraunces",serif;font-size:16px;line-height:1.2;display:block;margin-bottom:4px;color:#0D0D0D;}.mp-unit-body p{font-size:13px;color:#555;line-height:1.5;margin:0;}' +
+    '.mp-unit-text{display:block;text-decoration:none;color:inherit;}.mp-unit-text:hover strong{color:#E8421A;}' +
     '.mp-unit-cta{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#F7F4EF;background:#E8421A;padding:11px 18px;text-decoration:none;white-space:nowrap;flex-shrink:0;}.mp-unit-cta:hover{background:#0D0D0D;}' +
     '@media(max-width:600px){.mp-unit{flex-wrap:wrap;gap:12px;}.mp-unit-cta{width:100%;text-align:center;}}';
   var style = document.createElement('style');
@@ -72,21 +75,21 @@
     var cap = Math.min(p.w, 400);
     var side = (idx % 2 === 1) ? ' mp-rec--right' : '';
     return '<div class="mp-rec' + side + '">' +
-        '<div class="mp-rec-pitch"><strong>' + p.pitch + '</strong></div>' +
+        '<div class="mp-rec-pitch"><a href="' + p.url + '" target="_blank" rel="sponsored noopener"><strong>' + p.pitch + '</strong></a></div>' +
         '<div class="mp-rec-media"><span class="mp-spon">Sponsored</span>' +
           '<a href="' + p.url + '" target="_blank" rel="sponsored noopener" style="max-width:' + cap + 'px;">' +
             '<img src="' + prefix + IMG + p.img + '" width="' + p.w + '" height="' + p.h + '" loading="lazy" style="aspect-ratio:' + p.w + '/' + p.h + '" alt="' + (p.alt || '') + '"></a></div>' +
       '</div>';
   }
   function skyHTML(p) {
-    return '<div class="mp-sky"><div class="mp-sky-pitch">' + (p.pitch || '') + '</div><span class="mp-spon">Sponsored</span>' +
+    return '<div class="mp-sky"><div class="mp-sky-pitch"><a href="' + p.url + '" target="_blank" rel="sponsored noopener">' + (p.pitch || '') + '</a></div><span class="mp-spon">Sponsored</span>' +
         '<a href="' + p.url + '" target="_blank" rel="sponsored noopener">' +
           '<img src="' + prefix + IMG + p.sky + '"' + (p.skyW ? ' width="' + p.skyW + '" height="' + p.skyH + '" style="aspect-ratio:' + p.skyW + '/' + p.skyH + '"' : '') + ' loading="lazy" alt="' + (p.alt || '') + '"></a></div>';
   }
   function textHTML(p) {
     var chip = p.tag ? '<span class="mp-unit-chip">' + p.tag + '</span>' : '';
     return '<div class="mp-unit"><span class="mp-unit-label">' + (p.label || 'Sponsored') + '</span>' +
-        '<div class="mp-unit-body">' + chip + '<strong>' + p.title + '</strong><p>' + p.body + '</p></div>' +
+        '<div class="mp-unit-body">' + chip + '<a class="mp-unit-text" href="' + p.url + '" target="_blank" rel="sponsored noopener"><strong>' + p.title + '</strong><p>' + p.body + '</p></a></div>' +
         '<a class="mp-unit-cta" href="' + p.url + '" target="_blank" rel="sponsored noopener">' + (p.cta || 'Learn More') + ' →</a></div>';
   }
 
