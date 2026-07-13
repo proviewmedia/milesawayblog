@@ -56,7 +56,7 @@
     '.mp-sky{margin:0 0 8px;text-align:center;}' +
     '.mp-sky-pitch{font-family:"Fraunces",serif;font-weight:700;font-size:15px;line-height:1.3;color:#0D0D0D;margin-bottom:12px;text-align:left;}' +
     '.mp-sky-pitch a{color:inherit;text-decoration:none;font-weight:inherit;}.mp-sky-pitch a:hover{color:#E8421A;}' +
-    '.mp-sky a{display:inline-block;width:100%;max-width:300px;line-height:0;border:0;}' +
+    '.mp-sky>a{display:inline-block;width:100%;max-width:300px;line-height:0;border:0;}' +
     '.mp-sky img{width:100%;height:auto;display:block;border:0;}' +
     // text fallback box
     '.mp-unit{border:2.5px solid #0D0D0D;background:#F7F4EF;display:flex;align-items:center;gap:20px;padding:18px 22px;font-family:"DM Sans",sans-serif;margin:34px 0;}' +
