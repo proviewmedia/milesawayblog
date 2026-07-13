@@ -23,7 +23,7 @@ Claude does every step below and pushes it live.
    - Date format: ISO `2026-07-08` and human `July 8, 2026`.
 3. **Write the body** using only these blocks: `<p>`, `<h2>`,
    `<ul><li>`, `<div class="pullquote">`, `<img class="inline-img">`,
-   and one `<div class="ad-slot" data-format="inline"></div>` a couple
+   and one `<div class="partner-slot" data-format="inline"></div>` a couple
    paragraphs in.
 4. **Wire it into the site** (so it's reachable + indexed):
    - Add a card to **`archive.html`** (top of the grid — newest first).
@@ -42,13 +42,13 @@ Claude does every step below and pushes it live.
 
 ## Adding or changing an ad
 
-All partnership/affiliate ads live in **one file: `ads.js`**. Edit the
+All partnership/affiliate ads live in **one file: `partners.js`**. Edit the
 `ADS` array at the top — add an object, change a URL, or flip `active`
 to `false` to pause one. It updates on every page automatically.
 
-Ad placement uses `<div class="ad-slot"></div>` markers, which already
+Ad placement uses `<div class="partner-slot"></div>` markers, which already
 exist on every content page (posts, homepage, category pages). You don't
-touch the pages to change an ad — only `ads.js`.
+touch the pages to change an ad — only `partners.js`.
 
 Ads intentionally do **not** appear on `contact.html` or `privacy.html`.
 
@@ -59,6 +59,6 @@ Ads intentionally do **not** appear on `contact.html` or `privacy.html`.
 | Task | File(s) to touch |
 | --- | --- |
 | New post | `_TEMPLATE_post.html` → `posts/<slug>.html`, `archive.html`, `index.html`, `sitemap.xml` |
-| Change an ad | `ads.js` only |
+| Change an ad | `partners.js` only |
 | Edit nav / footer everywhere | every page (ask Claude — it scripts this) |
 | Contact details | `contact.html`, footers |

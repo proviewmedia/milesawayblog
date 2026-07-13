@@ -1,15 +1,15 @@
 # Affiliate Programs — Miles Away Blog
 
 All programs run through **Impact Radius** (publisher ID **5096957**). The
-live, rendered database is the `ADS` object in **`ads.js`** — edit there to
+live, rendered database is the `ADS` object in **`partners.js`** — edit there to
 change what shows on the site. This file is a full reference of every
 program and the creatives Melvin has available.
 
-**How placements work:** a `<div class="ad-slot" data-aff="KEY"></div>` shows
-that partner; a bare `<div class="ad-slot"></div>` rotates. Links open in a
+**How placements work:** a `<div class="partner-slot" data-partner="KEY"></div>` shows
+that partner; a bare `<div class="partner-slot"></div>` rotates. Links open in a
 new tab with `rel="sponsored"`. Tracking-link format: `…/c/5096957/{adId}/{campaignId}`.
 
-| Key (`data-aff`) | Program | Category | Tracking link in use |
+| Key (`data-partner`) | Program | Category | Tracking link in use |
 | --- | --- | --- | --- |
 | `airalo` | Airalo | eSIM | https://airalo.pxf.io/c/5096957/1349058/15608 |
 | `airhub` | AirHub | eSIM | https://gighubsystemsinc.sjv.io/c/5096957/1790409/21179 |

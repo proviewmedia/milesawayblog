@@ -7,9 +7,9 @@
 
    HOW PLACEMENTS WORK:
    Put a slot anywhere in a page:
-     <div class="ad-slot" data-aff="airalo"></div>   -> shows that partner
-     <div class="ad-slot"></div>                      -> rotates partners
-   The `data-aff` value is the program's key in the ADS object below.
+     <div class="partner-slot" data-partner="airalo"></div>   -> shows that partner
+     <div class="partner-slot"></div>                      -> rotates partners
+   The `data-partner` value is the program's key in the ADS object below.
 
    TO ADD / EDIT A PARTNER: add or edit an entry in ADS. Fields:
      label  small kicker ("Partner" / "Sponsored")
@@ -39,50 +39,50 @@
     glo:         { label:"Partner", tag:"Wellness",    title:"Glo — Yoga & Wellness",          body:"Yoga, meditation, and Pilates you can do anywhere. Reset on the road.",                 cta:"Try Glo",           url:"https://glodigitalinc.pxf.io/c/5096957/2220231/26739",      active:true },
     fabletics:   { label:"Partner", tag:"Activewear",  title:"Fabletics",                      body:"Travel-ready activewear — 80% off your first VIP order.",                              cta:"Shop the Deal",     url:"https://fableticsperformance.pxf.io/c/5096957/2814335/32253",active:true }
   };
-  // rotation pool for slots without a specific data-aff (travel-relevant first)
+  // rotation pool for slots without a specific data-partner (travel-relevant first)
   var ROTATE = ["airalo","nordvpn","vegas-hotels","backcountry","alltrails","babbel","osprey","budget","glo","airhub","vegas-shows","fabletics"];
   // ---------------------------------------------------------------
 
   window.MA_AFFILIATES = ADS; // expose the database
 
   var css =
-    '.ad-slot{display:block}' +
-    '.ma-ad{border:2.5px solid #0D0D0D;background:#F7F4EF;display:flex;align-items:center;gap:20px;' +
+    '.partner-slot{display:block}' +
+    '.mp-unit{border:2.5px solid #0D0D0D;background:#F7F4EF;display:flex;align-items:center;gap:20px;' +
       'padding:18px 22px;font-family:"DM Sans",sans-serif;}' +
-    '.ma-ad--inline{margin:36px 0;}' +
-    '.ma-ad-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;' +
+    '.mp-unit--inline{margin:36px 0;}' +
+    '.mp-unit-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;' +
       'border:1px solid #ccc;padding:3px 8px;flex-shrink:0;align-self:flex-start;}' +
-    '.ma-ad-body{flex:1;min-width:0;}' +
-    '.ma-ad-chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;' +
+    '.mp-unit-body{flex:1;min-width:0;}' +
+    '.mp-unit-chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;' +
       'color:#E8421A;margin-bottom:5px;}' +
-    '.ma-ad-body strong{font-family:"Fraunces",serif;font-size:16px;line-height:1.2;display:block;margin-bottom:4px;color:#0D0D0D;}' +
-    '.ma-ad-body p{font-size:13px;color:#555;line-height:1.5;margin:0;}' +
-    '.ma-ad-cta{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#F7F4EF;' +
+    '.mp-unit-body strong{font-family:"Fraunces",serif;font-size:16px;line-height:1.2;display:block;margin-bottom:4px;color:#0D0D0D;}' +
+    '.mp-unit-body p{font-size:13px;color:#555;line-height:1.5;margin:0;}' +
+    '.mp-unit-cta{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#F7F4EF;' +
       'background:#E8421A;padding:11px 18px;text-decoration:none;white-space:nowrap;flex-shrink:0;}' +
-    '.ma-ad-cta:hover{background:#0D0D0D;}' +
-    '@media(max-width:600px){.ma-ad{flex-wrap:wrap;gap:12px;}.ma-ad-cta{width:100%;text-align:center;}}';
+    '.mp-unit-cta:hover{background:#0D0D0D;}' +
+    '@media(max-width:600px){.mp-unit{flex-wrap:wrap;gap:12px;}.mp-unit-cta{width:100%;text-align:center;}}';
   var style = document.createElement('style');
-  style.setAttribute('data-miles-ads', '');
+  style.setAttribute('data-mp', '');
   style.appendChild(document.createTextNode(css));
   document.head.appendChild(style);
 
   function render(ad) {
-    var chip = ad.tag ? '<span class="ma-ad-chip">' + ad.tag + '</span>' : '';
-    return '<div class="ma-ad ma-ad--inline">' +
-        '<span class="ma-ad-label">' + (ad.label || 'Sponsored') + '</span>' +
-        '<div class="ma-ad-body">' + chip +
+    var chip = ad.tag ? '<span class="mp-unit-chip">' + ad.tag + '</span>' : '';
+    return '<div class="mp-unit mp-unit--inline">' +
+        '<span class="mp-unit-label">' + (ad.label || 'Sponsored') + '</span>' +
+        '<div class="mp-unit-body">' + chip +
           '<strong>' + ad.title + '</strong>' +
           '<p>' + ad.body + '</p>' +
         '</div>' +
-        '<a class="ma-ad-cta" href="' + ad.url + '" target="_blank" rel="sponsored noopener">' + (ad.cta || 'Learn More') + ' →</a>' +
+        '<a class="mp-unit-cta" href="' + ad.url + '" target="_blank" rel="sponsored noopener">' + (ad.cta || 'Learn More') + ' →</a>' +
       '</div>';
   }
 
   function fill() {
-    var slots = document.querySelectorAll('.ad-slot');
+    var slots = document.querySelectorAll('.partner-slot');
     var r = 0;
     for (var i = 0; i < slots.length; i++) {
-      var key = slots[i].getAttribute('data-aff');
+      var key = slots[i].getAttribute('data-partner');
       var ad = key && ADS[key] && ADS[key].active !== false ? ADS[key] : null;
       if (!ad) { // rotate through the pool
         for (var t = 0; t < ROTATE.length; t++) {
