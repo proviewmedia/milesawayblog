@@ -1,73 +1,58 @@
 /* ============================================================
-   MILES AWAY BLOG — CENTRAL AD MANAGER
+   MILES AWAY BLOG — AFFILIATE / PARTNER DATABASE + RENDERER
    ------------------------------------------------------------
-   This ONE file controls every partnership/affiliate ad on the
-   whole site. Edit the ADS array below and it updates everywhere.
+   This ONE file is the source of truth for every affiliate/partner
+   placement on the site. All links are real Impact Radius tracking
+   links (publisher 5096957) and open in a new tab with rel="sponsored".
 
-   HOW TO ADD OR CHANGE AN AD:
-   Add/edit an object in the ADS array. Fields:
-     label : small kicker text  (e.g. "Sponsored", "Affiliate", "Partner")
-     tag   : optional category chip (e.g. "Credit Cards"). Use "" to hide.
-     title : bold headline (the product/partner name)
-     body  : one or two sentences
-     cta   : button text (e.g. "Learn More")
-     url   : destination link (your affiliate/partner URL)
-     active: true to show, false to pause without deleting
+   HOW PLACEMENTS WORK:
+   Put a slot anywhere in a page:
+     <div class="ad-slot" data-aff="airalo"></div>   -> shows that partner
+     <div class="ad-slot"></div>                      -> rotates partners
+   The `data-aff` value is the program's key in the ADS object below.
 
-   HOW ADS APPEAR ON A PAGE:
-   Put a placeholder anywhere in a page's HTML:
-     <div class="ad-slot"></div>                 (banner strip)
-     <div class="ad-slot" data-format="inline"></div>   (inside article text)
-   This script fills every .ad-slot automatically. Multiple slots on
-   one page rotate through the active ads so they don't repeat.
+   TO ADD / EDIT A PARTNER: add or edit an entry in ADS. Fields:
+     label  small kicker ("Partner" / "Sponsored")
+     tag    category chip (e.g. "eSIM"); "" hides it
+     title  bold headline (the brand / offer)
+     body   one or two sentences
+     cta    button text
+     url    the Impact tracking link (…/c/5096957/adId/campaignId)
+     active true to show, false to pause
    ============================================================ */
 
 (function () {
-  // ---------------------- EDIT ADS HERE ----------------------
-  var ADS = [
-    {
-      label: "Partner",
-      tag: "Credit Cards",
-      title: "Capital One Venture X",
-      body: "Fund your next trip. 2x miles on every purchase, premium lounge access, and an annual travel credit that pays for itself.",
-      cta: "Learn More",
-      url: "#",          // TODO: replace with real partner/affiliate link
-      active: true
-    },
-    {
-      label: "Affiliate",
-      tag: "Travel Gear",
-      title: "The Carry-On That Does It All",
-      body: "The travel backpack built for long flights — the one piece of gear I never leave home without.",
-      cta: "See the Gear",
-      url: "#",          // TODO: replace with real affiliate link
-      active: true
-    },
-    {
-      label: "Partner",
-      tag: "Shopping",
-      title: "Temu — Travel Essentials for Less",
-      body: "Packing cubes, adapters, and the little things that make a trip smoother, without the markup.",
-      cta: "Shop Now",
-      url: "#",          // TODO: replace with real partner link
-      active: true
-    }
-  ];
-  // -----------------------------------------------------------
+  // ---------------------- AFFILIATE DATABASE ----------------------
+  var ADS = {
+    airalo:      { label:"Partner", tag:"eSIM",        title:"Airalo — Travel eSIMs",         body:"Skip roaming fees. Instant mobile data in 200+ countries the moment you land.",        cta:"Get an eSIM",       url:"https://airalo.pxf.io/c/5096957/1349058/15608",            active:true },
+    airhub:      { label:"Partner", tag:"eSIM",        title:"AirHub eSIM",                    body:"Affordable global data plans for travelers — stay connected anywhere.",                 cta:"See Plans",         url:"https://gighubsystemsinc.sjv.io/c/5096957/1790409/21179",   active:true },
+    nordvpn:     { label:"Partner", tag:"VPN",         title:"NordVPN",                        body:"Protect your connection on public Wi-Fi and access home content from abroad.",          cta:"Get NordVPN",       url:"https://nordvpn.sjv.io/c/5096957/464440/7452",              active:true },
+    "vegas-hotels":      { label:"Partner", tag:"Las Vegas",  title:"Vegas.com — Best Hotel Prices",  body:"Compare the best deals on Las Vegas hotels, right on the Strip.",              cta:"Find Hotels",       url:"https://vegas.vdvm.net/c/5096957/271012/4221",              active:true },
+    "vegas-shows":       { label:"Partner", tag:"Las Vegas",  title:"Vegas.com — Shows & Tickets",    body:"Save on the best Las Vegas shows, from Cirque to headliners.",                 cta:"Browse Shows",      url:"https://vegas.vdvm.net/c/5096957/262153/4221",              active:true },
+    "vegas-caesars":     { label:"Partner", tag:"Las Vegas",  title:"Caesars Hotels — Rooms from $29",body:"Stay on the Strip for less at Caesars Entertainment hotels.",                  cta:"Book a Room",       url:"https://vegas.vdvm.net/c/5096957/410014/4221",              active:true },
+    "grand-canyon":      { label:"Partner", tag:"Tours",      title:"Grand Canyon Day Tours",         body:"Guided day trips to the Grand Canyon from Las Vegas with Maverick.",           cta:"See Tours",         url:"https://vegas.vdvm.net/c/5096957/491743/4221",              active:true },
+    alltrails:   { label:"Partner", tag:"Outdoors",    title:"AllTrails+",                     body:"Offline maps, wrong-turn alerts, and 450k+ trails. Try 7 days free.",                   cta:"Start Free Trial",  url:"https://alltrails.pxf.io/c/5096957/1918532/22353",          active:true },
+    backcountry: { label:"Partner", tag:"Gear",        title:"Backcountry",                    body:"Outdoor gear, apparel, and camp essentials — 15% off your first order.",                cta:"Shop Gear",         url:"https://backcountry.tnu8.net/c/5096957/1107360/5311",       active:true },
+    osprey:      { label:"Partner", tag:"Gear",        title:"Osprey Packs",                   body:"The travel and hiking packs I trust — up to 40% off sale items.",                       cta:"Shop Packs",        url:"https://osprey.pxf.io/c/5096957/2991713/20745",             active:true },
+    budget:      { label:"Partner", tag:"Car Rental",  title:"Budget Car Rental",              body:"Wheels for your next road trip at a price that fits the budget.",                       cta:"Find a Car",        url:"https://budget.pxf.io/c/5096957/1877222/20801",             active:true },
+    babbel:      { label:"Partner", tag:"Language",    title:"Babbel",                         body:"Learn the local language before your trip — real conversations, fast.",                 cta:"Start Learning",    url:"https://babbel.sjv.io/c/5096957/1069912/13589",             active:true },
+    glo:         { label:"Partner", tag:"Wellness",    title:"Glo — Yoga & Wellness",          body:"Yoga, meditation, and Pilates you can do anywhere. Reset on the road.",                 cta:"Try Glo",           url:"https://glodigitalinc.pxf.io/c/5096957/2220231/26739",      active:true },
+    fabletics:   { label:"Partner", tag:"Activewear",  title:"Fabletics",                      body:"Travel-ready activewear — 80% off your first VIP order.",                              cta:"Shop the Deal",     url:"https://fableticsperformance.pxf.io/c/5096957/2814335/32253",active:true }
+  };
+  // rotation pool for slots without a specific data-aff (travel-relevant first)
+  var ROTATE = ["airalo","nordvpn","vegas-hotels","backcountry","alltrails","babbel","osprey","budget","glo","airhub","vegas-shows","fabletics"];
+  // ---------------------------------------------------------------
 
-  var active = ADS.filter(function (a) { return a.active !== false; });
-  if (!active.length) return;
+  window.MA_AFFILIATES = ADS; // expose the database
 
-  // Inject styling once, namespaced (.ma-ad*) so it never clashes with page CSS.
   var css =
     '.ad-slot{display:block}' +
     '.ma-ad{border:2.5px solid #0D0D0D;background:#F7F4EF;display:flex;align-items:center;gap:20px;' +
       'padding:18px 22px;font-family:"DM Sans",sans-serif;}' +
-    '.ma-ad--banner{margin:0;border-left:none;border-right:none;}' +
     '.ma-ad--inline{margin:36px 0;}' +
     '.ma-ad-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;' +
       'border:1px solid #ccc;padding:3px 8px;flex-shrink:0;align-self:flex-start;}' +
-    '.ma-ad-body{flex:1;}' +
+    '.ma-ad-body{flex:1;min-width:0;}' +
     '.ma-ad-chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;' +
       'color:#E8421A;margin-bottom:5px;}' +
     '.ma-ad-body strong{font-family:"Fraunces",serif;font-size:16px;line-height:1.2;display:block;margin-bottom:4px;color:#0D0D0D;}' +
@@ -75,38 +60,41 @@
     '.ma-ad-cta{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#F7F4EF;' +
       'background:#E8421A;padding:11px 18px;text-decoration:none;white-space:nowrap;flex-shrink:0;}' +
     '.ma-ad-cta:hover{background:#0D0D0D;}' +
-    '@media(max-width:640px){.ma-ad{flex-wrap:wrap;gap:12px;}.ma-ad-cta{width:100%;text-align:center;}}';
+    '@media(max-width:600px){.ma-ad{flex-wrap:wrap;gap:12px;}.ma-ad-cta{width:100%;text-align:center;}}';
   var style = document.createElement('style');
   style.setAttribute('data-miles-ads', '');
   style.appendChild(document.createTextNode(css));
   document.head.appendChild(style);
 
-  function render(ad, format) {
+  function render(ad) {
     var chip = ad.tag ? '<span class="ma-ad-chip">' + ad.tag + '</span>' : '';
-    return '<div class="ma-ad ma-ad--' + (format === 'inline' ? 'inline' : 'banner') + '">' +
+    return '<div class="ma-ad ma-ad--inline">' +
         '<span class="ma-ad-label">' + (ad.label || 'Sponsored') + '</span>' +
         '<div class="ma-ad-body">' + chip +
           '<strong>' + ad.title + '</strong>' +
           '<p>' + ad.body + '</p>' +
         '</div>' +
-        '<a class="ma-ad-cta" href="' + ad.url + '"' +
-          (/^https?:/.test(ad.url) ? ' target="_blank" rel="sponsored noopener"' : '') +
-          '>' + (ad.cta || 'Learn More') + ' →</a>' +
+        '<a class="ma-ad-cta" href="' + ad.url + '" target="_blank" rel="sponsored noopener">' + (ad.cta || 'Learn More') + ' →</a>' +
       '</div>';
   }
 
   function fill() {
     var slots = document.querySelectorAll('.ad-slot');
+    var r = 0;
     for (var i = 0; i < slots.length; i++) {
-      var ad = active[i % active.length];   // rotate so repeated slots differ
-      var format = slots[i].getAttribute('data-format') || 'banner';
-      slots[i].innerHTML = render(ad, format);
+      var key = slots[i].getAttribute('data-aff');
+      var ad = key && ADS[key] && ADS[key].active !== false ? ADS[key] : null;
+      if (!ad) { // rotate through the pool
+        for (var t = 0; t < ROTATE.length; t++) {
+          var cand = ADS[ROTATE[(r + t) % ROTATE.length]];
+          if (cand && cand.active !== false) { ad = cand; r = r + t + 1; break; }
+        }
+      }
+      if (ad) slots[i].innerHTML = render(ad);
     }
   }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', fill);
-  } else {
-    fill();
-  }
+  } else { fill(); }
 })();
