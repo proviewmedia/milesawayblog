@@ -71,8 +71,9 @@
   document.head.appendChild(style);
 
   function bannerHTML(p) {
+    var cap = Math.min(p.w, 460); // keep banners a modest, centered unit — never a full-width takeover
     return '<div class="mp-banner"><span class="mp-spon">Sponsored</span>' +
-      '<a href="' + p.url + '" target="_blank" rel="sponsored noopener" style="max-width:' + p.w + 'px;">' +
+      '<a href="' + p.url + '" target="_blank" rel="sponsored noopener" style="max-width:' + cap + 'px;">' +
         '<img src="' + prefix + IMG + p.img + '" width="' + p.w + '" height="' + p.h + '" loading="lazy" ' +
              'style="aspect-ratio:' + p.w + '/' + p.h + '" alt="' + (p.alt || '') + '"></a></div>';
   }
