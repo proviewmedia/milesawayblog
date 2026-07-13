@@ -104,9 +104,12 @@
     }
     for (var i = 0; i < slots.length; i++) {
       var isSky = slots[i].hasAttribute('data-sky');
+      var forced = slots[i].hasAttribute('data-force'); // bypass the per-advertiser dedupe (e.g. a Vegas post showing several Vegas.com offers)
       var key = slots[i].getAttribute('data-partner');
-      var ok = key && P[key] && !used[brandOf(key)] && (!isSky || P[key].sky);
-      if (!ok) key = pickUnused(isSky);
+      if (!(forced && key && P[key])) {
+        var ok = key && P[key] && !used[brandOf(key)] && (!isSky || P[key].sky);
+        if (!ok) key = pickUnused(isSky);
+      }
       if (!key) continue;
       used[brandOf(key)] = 1;
       var p = P[key];
