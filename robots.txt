@@ -3,7 +3,7 @@ Allow: /
 Disallow: /_TEMPLATE_post.html
 
 # Sitemaps
-Sitemap: https://milesawayblog.com/sitemap.xml
+Sitemap: https://www.milesawayblog.com/sitemap.xml
 
 # Block common junk crawlers
 User-agent: AhrefsBot
