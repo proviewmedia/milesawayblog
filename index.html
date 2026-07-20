@@ -599,7 +599,7 @@
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <div class="nav-right"><button class="nav-btn filled">Subscribe</button></div>
+  <div class="nav-right"><button class="nav-btn filled" onclick="document.getElementById('subscribe').scrollIntoView({behavior:'smooth'})">Subscribe</button></div>
 </nav>
 
 <!-- MOBILE MENU -->
@@ -611,7 +611,7 @@
   <a href="tips.html">Travel Tips</a>
   <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
-  <a href="#" style="background:var(--accent);color:var(--white);">Subscribe</a>
+  <a href="#subscribe" style="background:var(--accent);color:var(--white);">Subscribe</a>
 </div>
 
 <!-- TICKER -->
@@ -788,15 +788,21 @@
 <div class="partner-slot" data-partner="vegas-hotels"></div>
 
 <!-- NEWSLETTER -->
-<div class="newsletter">
+<div class="newsletter" id="subscribe">
   <div class="newsletter-left">
     <h3>Go <em>further.</em><br>Travel <em>smarter.</em></h3>
     <p>Stories, gear guides, destination tips, and honest reviews — from someone who actually goes.</p>
   </div>
   <div class="newsletter-right">
-    <input type="text" placeholder="Your name">
-    <input type="email" placeholder="Your email address">
-    <button>Subscribe — It's Free</button>
+    <form action="https://37bb3cbb.sibforms.com/serve/MUIFAGT7RPBWBSs2-uBCXw703NgDaU0L2Hf031h8iRaAipr5mzumNpnkzCec0Jyfny4RquucPzTiGXHddOzUKUQ_c-hmpK-Qzxdc-TR4Q-ediCHmsdCk1Kf2CEU8H-XcAZ4ZuH1MeQY5dSWbFNrsbO0xvhwUu1Rz0rFM63HUgaOelmmDhoReCHAgJbGhMmE59B5SWdgA2pWcfRVJxw==" method="POST" target="brevo-iframe" style="display:flex;flex-direction:column;gap:14px;margin:0;" onsubmit="var f=this;setTimeout(function(){f.style.display='none';document.getElementById('subscribe-thanks').style.display='block';},150);">
+      <input type="text" name="FIRSTNAME" placeholder="Your name" autocomplete="given-name">
+      <input type="email" name="EMAIL" placeholder="Your email address" required autocomplete="email">
+      <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute !important;left:-9999px !important;width:1px;height:1px;border:none !important;padding:0 !important;">
+      <input type="hidden" name="locale" value="en">
+      <button type="submit">Subscribe — It's Free</button>
+    </form>
+    <p id="subscribe-thanks" style="display:none;font-family:'Fraunces',serif;font-weight:700;font-size:22px;line-height:1.25;color:var(--accent);margin:0;">Thanks — you're subscribed!</p>
+    <iframe name="brevo-iframe" title="Newsletter signup" style="display:none;" aria-hidden="true"></iframe>
   </div>
 </div>
 
