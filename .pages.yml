@@ -1,0 +1,139 @@
+# Pages CMS (app.pagescms.org): the writing screen for Miles Away Blog.
+# Saving a post commits content/posts/<name>.md; .github/workflows/build-posts.yml
+# then runs tools/build_posts.py to turn it into posts/<name>.html.
+
+media:
+  input: images/uploads
+  output: /images/uploads
+
+content:
+  - name: posts
+    label: Blog Posts
+    type: collection
+    path: content/posts
+    filename:
+      template: "{primary}.md"
+      field: create
+    view:
+      fields: [title, status, author, date]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: "The headline readers see. The file name (and web address) is set from this when you create the post."
+      - name: status
+        label: Status
+        type: select
+        required: true
+        description: "Draft stays private. Published goes live on the site about two minutes after you save. Switch back to Draft to take a post down."
+        options:
+          values: [Draft, Published]
+      - name: author
+        label: Author
+        type: select
+        required: true
+        options:
+          values: [Melvin, Jenn]
+      - name: date
+        label: Publish date
+        type: date
+        required: true
+      - name: category
+        label: Category
+        type: select
+        required: true
+        description: "Destination guide = a place. Review = a product, app or service. Travel tip = a how-to guide."
+        options:
+          values: [Destination guide, Review, Travel tip]
+      - name: continent
+        label: Continent (destination guides only)
+        type: select
+        options:
+          values: [North America, Europe, Asia, Latin America, Africa, Oceania]
+      - name: place
+        label: Place (destination guides only)
+        type: string
+        description: "Short location shown on the card, like Japan or Maui, HI."
+      - name: description
+        label: Search summary
+        type: text
+        required: true
+        description: "One or two sentences Google shows under the title. Keep it under 155 characters and use the words people would search."
+      - name: hero
+        label: Main image
+        type: image
+        description: "Wide photos work best (landscape, at least 1600 pixels wide)."
+      - name: hero_alt
+        label: Main image description
+        type: string
+        description: "Describe what is in the photo for screen readers and Google, like: Red torii gates at Fushimi Inari in Kyoto."
+      - name: shop_links
+        label: Shop links
+        type: object
+        list: true
+        description: "Each one becomes a boxed shop link. Type [shop] on its own line in the post to place them; any not placed go at the end. Paste the normal store link if you don't have an affiliate link, and Claude will swap in the tracked one."
+        fields:
+          - name: label
+            label: Link text
+            type: string
+            description: "Like: Osprey Arcane Duffel Pack at Osprey"
+          - name: link
+            label: Link
+            type: string
+          - name: box_label
+            label: Box heading (optional)
+            type: string
+            description: "Small heading above the link. Defaults to Shop This."
+      - name: banner_1
+        label: Partner banner 1
+        type: select
+        description: "A sponsored banner inside the post. Type [banner] on its own line to place it, or leave it and it goes in automatically."
+        options:
+          values:
+            - { name: nordvpn, label: NordVPN }
+            - { name: airalo, label: Airalo eSIM }
+            - { name: airhub, label: AirHub eSIM }
+            - { name: alltrails, label: AllTrails }
+            - { name: backcountry, label: Backcountry }
+            - { name: babbel, label: Babbel }
+            - { name: budget, label: Budget car rental }
+            - { name: fabletics, label: Fabletics }
+            - { name: glo, label: Glo yoga }
+            - { name: vegas-hotels, label: Vegas.com hotels }
+            - { name: vegas-shows, label: Vegas.com shows }
+            - { name: grand-canyon, label: Grand Canyon tours }
+            - { name: vegas-caesars, label: Caesars hotels }
+      - name: banner_2
+        label: Partner banner 2
+        type: select
+        description: "Pick a different brand from banner 1."
+        options:
+          values:
+            - { name: nordvpn, label: NordVPN }
+            - { name: airalo, label: Airalo eSIM }
+            - { name: airhub, label: AirHub eSIM }
+            - { name: alltrails, label: AllTrails }
+            - { name: backcountry, label: Backcountry }
+            - { name: babbel, label: Babbel }
+            - { name: budget, label: Budget car rental }
+            - { name: fabletics, label: Fabletics }
+            - { name: glo, label: Glo yoga }
+            - { name: vegas-hotels, label: Vegas.com hotels }
+            - { name: vegas-shows, label: Vegas.com shows }
+            - { name: grand-canyon, label: Grand Canyon tours }
+            - { name: vegas-caesars, label: Caesars hotels }
+      - name: sidebar_banner
+        label: Sidebar banner
+        type: select
+        description: "The tall banner beside the post on desktop."
+        options:
+          values:
+            - { name: nordvpn, label: NordVPN }
+            - { name: backcountry, label: Backcountry }
+            - { name: babbel, label: Babbel }
+      - name: body
+        label: Post
+        type: rich-text
+        options:
+          format: html
