@@ -3,8 +3,8 @@
 # then runs tools/build_posts.py to turn it into posts/<name>.html.
 
 media:
-  input: images/uploads
-  output: /images/uploads
+  input: images
+  output: /images
 
 content:
   - name: posts
@@ -26,7 +26,7 @@ content:
         label: Status
         type: select
         required: true
-        description: "Draft stays private. Published goes live on the site about two minutes after you save. Switch back to Draft to take a post down."
+        description: "Draft stays private. Published goes live on the site about two minutes after you save. Switch a new post back to Draft to take it down. On the older posts, Draft just holds your edits back; the post stays up."
         options:
           values: [Draft, Published]
       - name: author
@@ -43,7 +43,7 @@ content:
         label: Category
         type: select
         required: true
-        description: "Destination guide = a place. Review = a product, app or service. Travel tip = a how-to guide."
+        description: "Destination guide = a place. Review = a product, app or service. Travel tip = a how-to guide. (Changing this on an older post doesn't move it; ask Claude.)"
         options:
           values: [Destination guide, Review, Travel tip]
       - name: continent
@@ -63,6 +63,8 @@ content:
       - name: hero
         label: Main image
         type: image
+        options:
+          path: images/uploads
         description: "Wide photos work best (landscape, at least 1600 pixels wide)."
       - name: hero_alt
         label: Main image description
@@ -117,6 +119,7 @@ content:
       - name: body
         label: Post text
         type: rich-text
-        description: "Write the whole post here. Use Heading 2 for each section title. Use the toolbar to add images and links. Type [shop] or [banner] on its own line to place a shop box or partner banner."
+        description: "Write the whole post here. Use Heading 2 for each section title. Add photos with the image button or by typing /. An italic line right under a photo becomes its photo credit. A quote block that starts with a bold line becomes a text box. Type [shop] or [banner] on its own line to place a shop box or partner banner."
         options:
           format: html
+          path: images/uploads

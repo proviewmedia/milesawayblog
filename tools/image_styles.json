@@ -1,0 +1,55 @@
+{
+  "/images/fitness/1st-phorm-logo.png": {
+    "class": "portrait",
+    "style": "max-width:360px;"
+  },
+  "/images/products/1st-phorm-creatine.png": {
+    "class": "portrait",
+    "style": "max-width:360px;"
+  },
+  "/images/products/1st-phorm-whey.png": {
+    "class": "portrait",
+    "style": "max-width:360px;"
+  },
+  "/images/products/1st-phorm-collagen.png": {
+    "class": "portrait",
+    "style": "max-width:360px;"
+  },
+  "/images/esim/airhub-logo.png": {
+    "class": "portrait"
+  },
+  "/images/cotopaxi/cotopaxi-allpa-35l-review-product.jpg": {
+    "class": "portrait"
+  },
+  "/images/planning/museum-information-desk.jpg": {
+    "class": "portrait"
+  },
+  "/images/bottles/hydro-flask-32-oz-wide-mouth-review-product.jpg": {
+    "class": "portrait"
+  },
+  "/images/vpn/nordvpn-how-it-works.png": {
+    "class": "portrait"
+  },
+  "/images/vpn/nordvpn-logo.png": {
+    "class": "portrait",
+    "style": "max-width:300px;"
+  },
+  "/images/osprey/osprey-arcane-duffel.jpg": {
+    "class": "portrait"
+  },
+  "/images/japan/tokyo-cherry-blossoms.jpg": {
+    "class": "portrait"
+  },
+  "/images/japan/kyoto-kinkakuji.jpg": {
+    "class": "portrait"
+  },
+  "/images/japan/arashiyama-bamboo.jpg": {
+    "class": "portrait"
+  },
+  "/images/tech/logitech-mx-master.jpg": {
+    "style": "background:#fff;max-width:540px;margin-left:auto;margin-right:auto;"
+  },
+  "/images/venture-x-card-art.jpg": {
+    "class": "portrait"
+  }
+}

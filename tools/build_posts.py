@@ -138,23 +138,65 @@ def callout(label, title, url, slug):
 
 
 def banner(key, keys):
-    return f'<div class="partner-slot" data-format="inline" data-partner="{key}"></div>' if key in keys else ''
+    # Vegas.com offers share one advertiser; data-force lets a post show several of them
+    force = ' data-force' if key.startswith('vegas') or key == 'grand-canyon' else ''
+    return f'<div class="partner-slot" data-format="inline" data-partner="{key}"{force}></div>' if key in keys else ''
 
 
-def build_body(meta, body, slug, keys, posts):
-    b = body.strip()
+def load_image_styles():
+    """Extra class/style for images in the older posts, keyed by site path. The editor can't hold these."""
+    try:
+        return json.load(open('tools/image_styles.json', encoding='utf-8'))
+    except FileNotFoundError:
+        return {}
+
+
+def editor_html(b, slug):
+    """Turn what the rich-text editor saves into the site's post markup."""
+    styles = load_image_styles()
+    # a quote block starting with a bold-only line is a text box; any other quote block is a pull quote
+    def quote(m):
+        inner = m.group(1).strip()
+        lab = re.match(r'<p>\s*<strong>([^<]+)</strong>\s*</p>\s*(.*)$', inner, re.S)
+        if lab:
+            return f'<div class="callout">\n  <span class="callout-label">{lab.group(1).strip()}</span>\n  {lab.group(2).strip()}\n</div>'
+        return '<div class="pullquote">' + re.sub(r'^<p>(.*)</p>$', r'\1', inner, flags=re.S) + '</div>'
+    b = re.sub(r'<blockquote>(.*?)</blockquote>', quote, b, flags=re.S)
+    # the editor wraps list items in paragraphs
+    b = re.sub(r'<li>\s*<p>((?:(?!</?p>).)*)</p>\s*</li>', r'<li>\1</li>', b, flags=re.S)
+    # an italic-only line right under an image is its photo credit
+    b = re.sub(r'(<img[^>]*>)\s*<p>\s*<em>((?:(?!</?(?:p|em)>).)*)</em>\s*</p>', r'\1\n<p class="img-credit">\2</p>', b, flags=re.S)
+    # small print typed as an italic line: the disclosure note, and hero photo credits
+    b = re.sub(r'<p>\s*<em>((?:Note|Heads up):(?:(?!</?p>).)*?)</em>\s*</p>',
+               r'<p style="font-size:14px;color:#777;"><em>\1</em></p>', b, flags=re.S)
+    b = re.sub(r'<p>\s*<em>(Hero (?:photo|image)(?:(?!</?(?:p|em)>).)*)</em>\s*</p>',
+               r'<p style="font-size:12px;color:#999;margin-top:32px;">\1</p>', b, flags=re.S)
+    def img(m):
+        tag = m.group(0)
+        src = re.search(r'src="([^"]*)"', tag)
+        st = styles.get(src.group(1), {}) if src else {}
+        if 'class=' not in tag:
+            cls = ('inline-img ' + st.get('class', '')).strip()
+            tag = tag.replace('<img', f'<img class="{cls}"' + (f' style="{st["style"]}"' if st.get('style') else ''), 1)
+        return tag
+    b = re.sub(r'<img [^>]*>', img, b)
     # media paths from the editor are site-absolute; posts live one folder down
     b = re.sub(r'(src|href)="/(images/[^"]+)"', r'\1="../\2"', b)
-    b = re.sub(r'<img(?![^>]*class=)', '<img class="inline-img" loading="lazy"', b)
-    # links written in the text: tag Impact links, mark affiliate links sponsored
+    # links: tag Impact links, open outside links in a new tab, mark affiliate links sponsored
     def fix_a(m):
-        tag, url = m.group(0), m.group(1)
-        new = tag_link(html.unescape(url), slug, 'text')
-        tag = tag.replace(url, esc(new))
-        if AFFILIATE_HOSTS.match(new) and 'rel=' not in tag:
-            tag = tag.replace('<a ', '<a rel="sponsored noopener" target="_blank" ', 1)
-        return tag
-    b = re.sub(r'<a [^>]*href="([^"]+)"[^>]*>', fix_a, b)
+        attrs = dict(re.findall(r'(\w[\w-]*)="([^"]*)"', m.group(0)))
+        url = html.unescape(attrs.get('href', ''))
+        if not url.startswith('http'):
+            return f'<a href="{esc(url)}">'
+        url = tag_link(url, slug, 'text')
+        rel = 'sponsored noopener' if AFFILIATE_HOSTS.match(url) else 'noopener'
+        return f'<a href="{esc(url)}" target="_blank" rel="{rel}">'
+    b = re.sub(r'<a [^>]*>', fix_a, b)
+    return b
+
+
+def build_body(meta, body, slug, keys, posts, keep_reading=True):
+    b = editor_html(body.strip(), slug)
 
     shops = [s for s in (meta.get('shop_links') or []) if isinstance(s, dict) and s.get('link')]
     shop_html = [callout(s.get('box_label') or 'Shop This', s.get('label') or 'Check the price', s['link'], slug) for s in shops]
@@ -162,7 +204,7 @@ def build_body(meta, body, slug, keys, posts):
     if isinstance(picked, str):
         picked = [picked]
     picked += [meta.get(k) for k in ('banner_1', 'banner_2') if meta.get(k)]
-    banners = [x for x in (banner(k, keys) for k in dict.fromkeys(picked)) if x]
+    banners = [x for x in (banner(k, keys) for k in picked) if x]
 
     # [shop] and [banner] markers typed on their own line in the editor
     marker = lambda word: re.compile(r'<p>\s*\[' + word + r'\]\s*</p>|^\s*\[' + word + r'\]\s*$', re.M | re.I)
@@ -183,7 +225,8 @@ def build_body(meta, body, slug, keys, posts):
     b += ''.join('\n\n' + x for x in shop_html)
 
     # FTC note after the first paragraph when the post carries any partner link
-    if meta.get('shop_links') or picked or AFFILIATE_HOSTS.search(b):
+    has_note = re.search(r'<em>(?:Note|Heads up):[^<]*affiliate', b)
+    if not has_note and (meta.get('shop_links') or picked or AFFILIATE_HOSTS.search(b)):
         note = ('<p style="font-size:14px;color:#777;"><em>Note: this post contains affiliate links. If you buy '
                 'through them I may earn a small commission at no cost to you. See the '
                 '<a href="../disclosure.html">disclosure</a>.</em></p>')
@@ -197,7 +240,7 @@ def build_body(meta, body, slug, keys, posts):
     if len(rel) < 3:
         rel += sorted((p for k, p in posts.items() if k != slug and p not in rel),
                       key=lambda p: p['date'], reverse=True)[:3 - len(rel)]
-    if rel:
+    if rel and keep_reading:
         b += '\n\n<h2 id="keep-reading">Keep Reading</h2>\n<ul>' + ''.join(
             f'\n  <li><a href="{p["slug"]}.html">{esc(p["title"])}</a></li>' for p in rel) + '\n</ul>'
 
@@ -269,6 +312,121 @@ def render(meta, body, slug, keys, sky_keys, posts, template):
     return out, {'slug': slug, 'title': title, 'desc': desc, 'date': d, 'card': card, 'alt': meta.get('hero_alt') or title,
                  'category': meta['_category'], 'tag': tag, 'continent': meta.get('continent'),
                  'place': meta.get('place') or ''}
+
+
+# ---------- the older hand-built posts ----------
+# Their pages keep their own design. The article between <!-- CMS:body --> markers
+# and a few details (title, byline, summary, main image, sidebar banner) come from the editor.
+
+import hashlib
+
+BODY_RE = re.compile(r'<!-- CMS:body v=([0-9a-f]*) -->\n(.*?)<!-- /CMS:body -->', re.S)
+
+
+def entry_hash(meta, body):
+    keep = {k: meta.get(k) for k in ('title', 'author', 'description', 'hero', 'hero_alt', 'shop_links',
+                                      'banners', 'banner_1', 'banner_2', 'sidebar_banner')}
+    return hashlib.sha1((json.dumps(keep, sort_keys=True, default=str) + body).encode()).hexdigest()[:12]
+
+
+def faq_schema(body_html):
+    m = re.search(r'<h2>Frequently Asked Questions</h2>(.*?)(?=<h2|$)', body_html, re.S)
+    if not m:
+        return None
+    text = lambda x: re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', '', x))).strip()
+    qa = re.findall(r'<h3>(.*?)</h3>\s*((?:<p>.*?</p>\s*)+)', m.group(1), re.S)
+    return [{'@type': 'Question', 'name': text(q),
+             'acceptedAnswer': {'@type': 'Answer', 'text': text(a)}} for q, a in qa] or None
+
+
+def patch_legacy(path, meta, body, slug, keys, sky_keys, posts):
+    """Update an older post in place. Returns True when the page changed."""
+    page = open(path, encoding='utf-8').read()
+    m = BODY_RE.search(page)
+    h = entry_hash(meta, body)
+    if m.group(1) == h:
+        return False
+    first_run = m.group(1) == ''
+    body_html = build_body(meta, body, slug, keys, posts, keep_reading=False)
+    page = page[:m.start()] + f'<!-- CMS:body v={h} -->\n' + body_html + '\n<!-- /CMS:body -->' + page[m.end():]
+
+    plain = lambda x: html.unescape(re.sub(r'<[^>]+>', '', x or '')).strip()
+    def swap(pattern, value, text, flags=0):
+        """Replace group 2 of pattern with value (escaped) only when the visible text differs."""
+        def r(x):
+            return x.group(1) + esc(value) + x.group(3) if plain(x.group(2)) != str(value).strip() else x.group(0)
+        return re.sub(pattern, r, text, count=1, flags=flags)
+    title = str(meta.get('title') or '').strip()
+    h1 = re.search(r'<h1 class="post-title">(.*?)</h1>', page, re.S)
+    title_changed = bool(title and h1 and plain(h1.group(1)) != title)
+    if title_changed:
+        page = swap(r'(<h1 class="post-title">)(.*?)(</h1>)', title, page, re.S)
+        page = re.sub(r'("headline":\s*)"[^"]*"', lambda x: x.group(1) + json.dumps(title, ensure_ascii=False), page, count=1)
+    author = str(meta.get('author') or 'Melvin')
+    page = swap(r'(<div class="post-meta"><span>By <strong>)([^<]*)(</strong>)', author, page)
+    page = re.sub(r'("author":\s*\{\s*"@type":\s*"Person",\s*"name":\s*)"([^"]*)"',
+                  lambda x: x.group(0) if x.group(2) == author else x.group(1) + json.dumps(author, ensure_ascii=False), page, count=1)
+    desc = re.sub(r'\s+', ' ', str(meta.get('description') or '')).strip()
+    if desc:
+        for pat in (r'(<meta name="description" content=")([^"]*)(")', r'(<meta property="og:description" content=")([^"]*)(")',
+                    r'(<meta name="twitter:description" content=")([^"]*)(")'):
+            page = swap(pat, desc, page)
+    hero = (meta.get('hero') or '').strip()
+    cur = re.search(r'<img class="post-hero-img" src="([^"]*)"', page)
+    if hero and cur and site_path(hero) != cur.group(1):
+        if hero.lstrip('/').startswith('images/uploads/'):
+            src, _, og = make_images(slug, hero)
+        else:
+            src, og = site_path(hero), f'{SITE}/{hero.lstrip("/")}'
+        if src:
+            # the old width/height belonged to the old picture
+            page = re.sub(r'<img class="post-hero-img" src="[^"]*"((?: (?:width|height)="\d+")*)',
+                          lambda x: f'<img class="post-hero-img" src="{src}"', page, count=1)
+            for pat in (r'(<meta property="og:image" content=")[^"]*', r'(<meta name="twitter:image" content=")[^"]*'):
+                page = re.sub(pat, lambda x: x.group(1) + og, page, count=1)
+    if meta.get('hero_alt'):
+        page = swap(r'(<img class="post-hero-img"[^>]*? alt=")([^"]*)(")', str(meta['hero_alt']), page)
+    sky = meta.get('sidebar_banner')
+    if sky in sky_keys:
+        page = re.sub(r'(data-partner=")[a-z-]+(" data-sky)', lambda x: x.group(1) + sky + x.group(2), page, count=1)
+    # read time moves in proportion to the change in length, so the original estimate stays the baseline
+    count = lambda x: len(re.sub(r'<[^>]+>', ' ', x).split())
+    old_words, new_words = count(m.group(2)), count(body_html)
+    if old_words and abs(new_words - old_words) > 30:
+        page = re.sub(r'(&middot; )(\d+)( min read)', lambda x: x.group(1) + str(max(1, round(int(x.group(2)) * new_words / old_words))) + x.group(3), page, count=1)
+    faq = faq_schema(body_html) if not first_run else None
+    if faq:
+        page = re.sub(r'("@type":\s*"FAQPage",\s*"mainEntity":\s*)\[.*?\]\s*(\}\s*</script>)',
+                      lambda x: x.group(1) + json.dumps(faq, ensure_ascii=False) + x.group(2), page, count=1, flags=re.S)
+    if not first_run:
+        today = date.today().isoformat()
+        page = re.sub(r'("dateModified":\s*)"[^"]*"', lambda x: x.group(1) + f'"{today}"', page, count=1)
+        sm = open('sitemap.xml', encoding='utf-8').read()
+        sm = re.sub(r'(<loc>' + re.escape(f'{SITE}/posts/{slug}.html') + r'</loc>\s*<lastmod>)[^<]*',
+                    lambda x: x.group(1) + today, sm, count=1)
+        open('sitemap.xml', 'w', encoding='utf-8').write(sm)
+        if title_changed:
+            update_cards(slug, title)
+    open(path, 'w', encoding='utf-8').write(page)
+    return True
+
+
+def update_cards(slug, title):
+    """Keep the hand-built listing cards for an older post in step with its title."""
+    if not title:
+        return
+    for f in ('index.html', 'archive.html', 'gear.html', 'tips.html', 'destinations.html'):
+        s = open(f, encoding='utf-8').read()
+        link = f'posts/{slug}.html'
+        def card(m):
+            c = m.group(0)
+            if link not in c:
+                return c
+            c = re.sub(r'(<div class="(?:grid-card|post-card)-title">).*?(</div>)', lambda x: x.group(1) + esc(title) + x.group(2), c, count=1, flags=re.S)
+            return c
+        s2 = re.sub(r'<(?:a|div) class="(?:grid-card|post-card)"[^>]*>.*?</(?:a|div)>\s*</(?:a|div)>', card, s, flags=re.S)
+        if s2 != s:
+            open(f, 'w', encoding='utf-8').write(s2)
 
 
 # ---------- listing pages ----------
@@ -387,9 +545,14 @@ def main():
     published, keep = [], set()
     for slug, meta, body in entries:
         out_path = f'posts/{slug}.html'
+        is_live = str(meta.get('status', 'Draft')).lower() == 'published'
         if os.path.exists(out_path) and GEN_MARK not in open(out_path, encoding='utf-8').read():
-            problems.append(f'{slug}: a hand-built post already uses this name, rename the post'); continue
-        if str(meta.get('status', 'Draft')).lower() != 'published':
+            if not BODY_RE.search(open(out_path, encoding='utf-8').read()):
+                problems.append(f'{slug}: a hand-built post already uses this name, rename the post')
+            elif is_live and patch_legacy(out_path, meta, body, slug, keys, sky_keys, posts):
+                print(f'updated {slug}')
+            continue
+        if not is_live:
             continue
         page, card = render(meta, body, slug, keys, sky_keys, posts, template)
         open(out_path, 'w', encoding='utf-8').write(page)
