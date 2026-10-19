@@ -158,8 +158,11 @@ def build_body(meta, body, slug, keys, posts):
 
     shops = [s for s in (meta.get('shop_links') or []) if isinstance(s, dict) and s.get('link')]
     shop_html = [callout(s.get('box_label') or 'Shop This', s.get('label') or 'Check the price', s['link'], slug) for s in shops]
-    banners = [banner(meta.get(k), keys) for k in ('banner_1', 'banner_2')]
-    banners = [x for x in banners if x]
+    picked = meta.get('banners') or []
+    if isinstance(picked, str):
+        picked = [picked]
+    picked += [meta.get(k) for k in ('banner_1', 'banner_2') if meta.get(k)]
+    banners = [x for x in (banner(k, keys) for k in dict.fromkeys(picked)) if x]
 
     # [shop] and [banner] markers typed on their own line in the editor
     marker = lambda word: re.compile(r'<p>\s*\[' + word + r'\]\s*</p>|^\s*\[' + word + r'\]\s*$', re.M | re.I)
@@ -168,9 +171,9 @@ def build_body(meta, body, slug, keys, posts):
             return pool.pop(0) if pool else ''
         b = marker(word).sub(put, b)
 
-    # banners not placed by a marker go before the 2nd and 4th section headings
+    # banners not placed by a marker go before every other section heading (2nd, 4th, 6th...)
     heads = [m.start() for m in re.finditer(r'<h2[\s>]', b)]
-    for slot, idx in zip(list(banners), (1, 3)):
+    for slot, idx in zip(list(banners), range(1, len(heads), 2)):
         if idx < len(heads):
             pos = heads[idx]
             b = b[:pos] + slot + '\n\n' + b[pos:]
@@ -180,7 +183,7 @@ def build_body(meta, body, slug, keys, posts):
     b += ''.join('\n\n' + x for x in shop_html)
 
     # FTC note after the first paragraph when the post carries any partner link
-    if meta.get('shop_links') or meta.get('banner_1') or meta.get('banner_2') or AFFILIATE_HOSTS.search(b):
+    if meta.get('shop_links') or picked or AFFILIATE_HOSTS.search(b):
         note = ('<p style="font-size:14px;color:#777;"><em>Note: this post contains affiliate links. If you buy '
                 'through them I may earn a small commission at no cost to you. See the '
                 '<a href="../disclosure.html">disclosure</a>.</em></p>')

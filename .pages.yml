@@ -85,30 +85,12 @@ content:
             label: Box heading (optional)
             type: string
             description: "Small heading above the link. Defaults to Shop This."
-      - name: banner_1
-        label: Partner banner 1
+      - name: banners
+        label: Partner banners
         type: select
-        description: "A sponsored banner inside the post. Type [banner] on its own line to place it, or leave it and it goes in automatically."
+        description: "Pick as many sponsored banners as you want, in the order you want them. Type [banner] on its own line wherever one should go (each [banner] uses the next one you picked). Any not placed go in automatically between sections."
         options:
-          values:
-            - { name: nordvpn, label: NordVPN }
-            - { name: airalo, label: Airalo eSIM }
-            - { name: airhub, label: AirHub eSIM }
-            - { name: alltrails, label: AllTrails }
-            - { name: backcountry, label: Backcountry }
-            - { name: babbel, label: Babbel }
-            - { name: budget, label: Budget car rental }
-            - { name: fabletics, label: Fabletics }
-            - { name: glo, label: Glo yoga }
-            - { name: vegas-hotels, label: Vegas.com hotels }
-            - { name: vegas-shows, label: Vegas.com shows }
-            - { name: grand-canyon, label: Grand Canyon tours }
-            - { name: vegas-caesars, label: Caesars hotels }
-      - name: banner_2
-        label: Partner banner 2
-        type: select
-        description: "Pick a different brand from banner 1."
-        options:
+          multiple: true
           values:
             - { name: nordvpn, label: NordVPN }
             - { name: airalo, label: Airalo eSIM }
