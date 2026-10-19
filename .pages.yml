@@ -133,7 +133,8 @@ content:
             - { name: backcountry, label: Backcountry }
             - { name: babbel, label: Babbel }
       - name: body
-        label: Post
+        label: Post text
         type: rich-text
+        description: "Write the whole post here. Use Heading 2 for each section title. Use the toolbar to add images and links. Type [shop] or [banner] on its own line to place a shop box or partner banner."
         options:
           format: html
