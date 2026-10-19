@@ -21,24 +21,34 @@
   var IMG = "images/partners/";
 
   var P = {
-    nordvpn:        { pitch:"Hotel and airport Wi‑Fi is a gamble — NordVPN keeps your connection private wherever you land.", url:"https://nordvpn.sjv.io/c/5096957/976012/7452", img:"nordvpn.jpg", w:1200, h:628, sky:"nordvpn-sky.jpg", skyW:260, skyH:450, alt:"NordVPN — 68% off the 2-year deal" },
-    airhub:         { pitch:"Land with data already working — AirHub travel eSIMs skip the roaming fees and the SIM hunt.", url:"https://gighubsystemsinc.sjv.io/c/5096957/1790409/21179", img:"airhub.png", w:524, h:240, alt:"AirHub travel eSIM data plans" },
-    "vegas-hotels": { pitch:"Book your Strip stay for less — Vegas.com surfaces the best hotel prices in one place.", url:"https://vegas.vdvm.net/c/5096957/271012/4221", img:"vegas-hotels.gif", w:728, h:90, alt:"Vegas.com — best Las Vegas hotel prices" },
-    "vegas-shows":  { pitch:"The shows are half the reason to go — grab Vegas tickets for up to 40% off.", url:"https://vegas.vdvm.net/c/5096957/271413/4221", img:"vegas-shows.gif", w:468, h:60, alt:"Save up to 40% on Las Vegas show tickets" },
-    "grand-canyon": { pitch:"One of the world's great wonders is a day trip from Vegas — go see the Grand Canyon.", url:"https://vegas.vdvm.net/c/5096957/491743/4221", img:"grand-canyon.jpg", w:300, h:250, alt:"Maverick Grand Canyon tours from Las Vegas" },
-    alltrails:      { pitch:"I never hit a trail without AllTrails — offline maps and wrong‑turn alerts keep you on track.", url:"https://alltrails.pxf.io/c/5096957/1908284/22353", img:"alltrails.jpg", w:1400, h:350, alt:"AllTrails — hiking, biking & trail maps" },
-    backcountry:    { pitch:"Gear that survives real trips, for less — new customers get 15% off at Backcountry.", url:"https://backcountry.tnu8.net/c/5096957/2129785/5311", img:"backcountry.jpg", w:728, h:90, sky:"backcountry-sky.jpg", skyW:300, skyH:600, alt:"Backcountry — outdoor gear and apparel" },
-    budget:         { pitch:"Your road‑trip wheels shouldn't break the bank — grab a deal from Budget.", url:"https://budget.pxf.io/c/5096957/1877222/20801", img:"budget.png", w:728, h:90, alt:"Budget car rental deals" },
-    babbel:         { pitch:"A few weeks with Babbel and you'll actually talk to locals — not just point at menus.", url:"https://babbel.sjv.io/c/5096957/1069912/13589", img:"babbel.png", w:300, h:250, sky:"babbel-sky.png", skyW:600, skyH:1200, alt:"Babbel — learn a new language" },
-    glo:            { pitch:"Keep your practice on the road — Glo has yoga and meditation you can do from any hotel room.", url:"https://glodigitalinc.pxf.io/c/5096957/2220231/26739", img:"glo.jpg", w:1200, h:628, alt:"Glo — yoga, meditation & Pilates" },
-    fabletics:      { pitch:"Travel‑ready activewear that packs light — new VIPs get 80% off the first order.", url:"https://fableticsperformance.pxf.io/c/5096957/2814340/32253", img:"fabletics.png", w:1200, h:675, alt:"Fabletics — activewear, 80% off first order" },
-    airalo:         { pitch:"Skip roaming fees — Airalo gives you instant mobile data in 200+ countries.", url:"https://airalo.pxf.io/c/5096957/1349058/15608", alt:"Airalo — travel eSIMs", label:"Partner", tag:"eSIM", title:"Airalo — Travel eSIMs", body:"Skip roaming fees. Instant mobile data in 200+ countries the moment you land.", cta:"Get an eSIM" },
-    "vegas-caesars":{ label:"Partner", tag:"Las Vegas", title:"Caesars Hotels", body:"Stay on the Las Vegas Strip for less — rooms from $29.", cta:"Book a Room", url:"https://vegas.vdvm.net/c/5096957/410014/4221" }
+    nordvpn:        { pitch:"Hotel and airport Wi‑Fi is a gamble. NordVPN keeps your connection private wherever you land.", url:"https://nordvpn.sjv.io/c/5096957/976012/7452", img:"nordvpn.jpg", w:1200, h:628, sky:"nordvpn-sky.jpg", skyW:260, skyH:450, alt:"NordVPN: 68% off the 2-year deal" },
+    airhub:         { pitch:"Land with data already working. AirHub travel eSIMs skip the roaming fees and the SIM hunt.", url:"https://gighubsystemsinc.sjv.io/c/5096957/1790409/21179", img:"airhub.png", w:524, h:240, alt:"AirHub travel eSIM data plans" },
+    "vegas-hotels": { pitch:"Book your Strip stay for less. Vegas.com surfaces the best hotel prices in one place.", url:"https://vegas.vdvm.net/c/5096957/271012/4221", img:"vegas-hotels.gif", w:728, h:90, alt:"Vegas.com: best Las Vegas hotel prices" },
+    "vegas-shows":  { pitch:"The shows are half the reason to go, so grab Vegas tickets for up to 40% off.", url:"https://vegas.vdvm.net/c/5096957/271413/4221", img:"vegas-shows.gif", w:468, h:60, alt:"Save up to 40% on Las Vegas show tickets" },
+    "grand-canyon": { pitch:"One of the world's great wonders is a day trip from Vegas, so go see the Grand Canyon.", url:"https://vegas.vdvm.net/c/5096957/491743/4221", img:"grand-canyon.jpg", w:300, h:250, alt:"Maverick Grand Canyon tours from Las Vegas" },
+    alltrails:      { pitch:"I never hit a trail without AllTrails. Offline maps and wrong‑turn alerts keep you on track.", url:"https://alltrails.pxf.io/c/5096957/1908284/22353", img:"alltrails.jpg", w:1400, h:350, alt:"AllTrails: hiking, biking & trail maps" },
+    backcountry:    { pitch:"Gear that survives real trips, for less. New customers get 15% off at Backcountry.", url:"https://backcountry.tnu8.net/c/5096957/2129785/5311", img:"backcountry.jpg", w:728, h:90, sky:"backcountry-sky.jpg", skyW:300, skyH:600, alt:"Backcountry: outdoor gear and apparel" },
+    budget:         { pitch:"Your road‑trip wheels shouldn't break the bank, so grab a deal from Budget.", url:"https://budget.pxf.io/c/5096957/1877222/20801", img:"budget.png", w:728, h:90, alt:"Budget car rental deals" },
+    babbel:         { pitch:"A few weeks with Babbel and you'll actually talk to locals, not just point at menus.", url:"https://babbel.sjv.io/c/5096957/1069912/13589", img:"babbel.png", w:300, h:250, sky:"babbel-sky.png", skyW:600, skyH:1200, alt:"Babbel: learn a new language" },
+    glo:            { pitch:"Keep your practice on the road. Glo has yoga and meditation you can do from any hotel room.", url:"https://glodigitalinc.pxf.io/c/5096957/2220231/26739", img:"glo.jpg", w:1200, h:628, alt:"Glo: yoga, meditation & Pilates" },
+    fabletics:      { pitch:"Travel‑ready activewear that packs light. New VIPs get 80% off the first order.", url:"https://fableticsperformance.pxf.io/c/5096957/2814340/32253", img:"fabletics.png", w:1200, h:675, alt:"Fabletics: activewear, 80% off first order" },
+    airalo:         { pitch:"Skip roaming fees. Airalo gives you instant mobile data in 200+ countries.", url:"https://airalo.pxf.io/c/5096957/1349058/15608", alt:"Airalo: travel eSIMs", label:"Partner", tag:"eSIM", title:"Airalo: Travel eSIMs", body:"Skip roaming fees. Instant mobile data in 200+ countries the moment you land.", cta:"Get an eSIM" },
+    "vegas-caesars":{ label:"Partner", tag:"Las Vegas", title:"Caesars Hotels", body:"Stay on the Las Vegas Strip for less, with rooms from $29.", cta:"Book a Room", url:"https://vegas.vdvm.net/c/5096957/410014/4221" }
   };
   var ROTATE = ["nordvpn","vegas-hotels","backcountry","alltrails","babbel","budget","glo","airhub","vegas-shows","fabletics","grand-canyon"];
 
   window.MA_PARTNERS = P;
   var prefix = (location.pathname.indexOf('/posts/') > -1) ? '../' : '';
+
+  // Per-page attribution: Impact reports group clicks by subId1 (page slug)
+  // and subId2 (placement type). 5480944 = the milesawayblog.com media property.
+  var PROPERTY = '5480944';
+  var SLUG = (location.pathname.split('/').pop() || 'index').replace(/\.html$/, '') || 'index';
+  if (SLUG === 'index') SLUG = 'home';
+  function track(url, placement) {
+    return url + (url.indexOf('?') > -1 ? '&' : '?') +
+      'subId1=' + encodeURIComponent(SLUG) + '&subId2=' + placement + '&partnerpropertyid=' + PROPERTY;
+  }
 
   var css =
     '.partner-slot{display:block}' +
@@ -72,25 +82,28 @@
   document.head.appendChild(style);
 
   function recHTML(p, idx) {
+    var u = track(p.url, 'banner');
     var cap = Math.min(p.w, 400);
     var side = (idx % 2 === 1) ? ' mp-rec--right' : '';
     return '<div class="mp-rec' + side + '">' +
-        '<div class="mp-rec-pitch"><a href="' + p.url + '" target="_blank" rel="sponsored noopener"><strong>' + p.pitch + '</strong></a></div>' +
+        '<div class="mp-rec-pitch"><a href="' + u + '" target="_blank" rel="sponsored noopener"><strong>' + p.pitch + '</strong></a></div>' +
         '<div class="mp-rec-media"><span class="mp-spon">Sponsored</span>' +
-          '<a href="' + p.url + '" target="_blank" rel="sponsored noopener" style="max-width:' + cap + 'px;">' +
+          '<a href="' + u + '" target="_blank" rel="sponsored noopener" style="max-width:' + cap + 'px;">' +
             '<img src="' + prefix + IMG + p.img + '" width="' + p.w + '" height="' + p.h + '" loading="lazy" style="aspect-ratio:' + p.w + '/' + p.h + '" alt="' + (p.alt || '') + '"></a></div>' +
       '</div>';
   }
   function skyHTML(p) {
-    return '<div class="mp-sky"><div class="mp-sky-pitch"><a href="' + p.url + '" target="_blank" rel="sponsored noopener">' + (p.pitch || '') + '</a></div><span class="mp-spon">Sponsored</span>' +
-        '<a href="' + p.url + '" target="_blank" rel="sponsored noopener">' +
+    var u = track(p.url, 'sky');
+    return '<div class="mp-sky"><div class="mp-sky-pitch"><a href="' + u + '" target="_blank" rel="sponsored noopener">' + (p.pitch || '') + '</a></div><span class="mp-spon">Sponsored</span>' +
+        '<a href="' + u + '" target="_blank" rel="sponsored noopener">' +
           '<img src="' + prefix + IMG + p.sky + '"' + (p.skyW ? ' width="' + p.skyW + '" height="' + p.skyH + '" style="aspect-ratio:' + p.skyW + '/' + p.skyH + '"' : '') + ' loading="lazy" alt="' + (p.alt || '') + '"></a></div>';
   }
   function textHTML(p) {
+    var u = track(p.url, 'text');
     var chip = p.tag ? '<span class="mp-unit-chip">' + p.tag + '</span>' : '';
     return '<div class="mp-unit"><span class="mp-unit-label">' + (p.label || 'Sponsored') + '</span>' +
-        '<div class="mp-unit-body">' + chip + '<a class="mp-unit-text" href="' + p.url + '" target="_blank" rel="sponsored noopener"><strong>' + p.title + '</strong><p>' + p.body + '</p></a></div>' +
-        '<a class="mp-unit-cta" href="' + p.url + '" target="_blank" rel="sponsored noopener">' + (p.cta || 'Learn More') + ' →</a></div>';
+        '<div class="mp-unit-body">' + chip + '<a class="mp-unit-text" href="' + u + '" target="_blank" rel="sponsored noopener"><strong>' + p.title + '</strong><p>' + p.body + '</p></a></div>' +
+        '<a class="mp-unit-cta" href="' + u + '" target="_blank" rel="sponsored noopener">' + (p.cta || 'Learn More') + ' →</a></div>';
   }
 
   function brandOf(key) { return (key.indexOf('vegas') === 0 || key === 'grand-canyon') ? 'vegas' : key; }
